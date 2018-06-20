@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ConditionalSection from './sections/conditional'
+import cars from './data/cars.json'
 
 /*function Hello (props){
     return <h2>{props.title}</h2>
@@ -96,10 +97,21 @@ class App extends Component {
          <ConditionalSection />
 
          <div>
-          <h4>Trabajando con listas</h4>
-          {numbers.map((number,index) => {
-            return <p key = {index} >Soy el numero {number} y el index {index}</p>
-          })}
+            <h4>Trabajando con listas</h4>
+            {numbers.map((number,index) => {
+              return <p key = {index} >Soy el numero {number} y el index {index}</p>
+            })}
+
+            <h4>Listas de objetos</h4>
+            <ul>
+              {cars.map(car => {
+                  return <li key = {car.id}>
+                            <p><strong>ID: </strong>{car.id}</p>
+                            <p><strong>Nombre: </strong>{car.name}</p>
+                            <p><strong>Nombre: </strong>{car.company}</p>
+                        </li>
+                      })}
+            </ul>
          </div>
       </div>
 
