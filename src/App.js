@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ConditionalSection from './sections/conditional'
 
 /*function Hello (props){
     return <h2>{props.title}</h2>
@@ -72,6 +73,8 @@ class App extends Component {
   state = { name: 'Miguel' }
 
   render() {
+    const numbers = [1,1,2,3,4]
+
     return (
       <div className="App">
         <header className="App-header">
@@ -90,8 +93,16 @@ class App extends Component {
          {this.state.name}
          <p>Propagando el state de nuestros componentes</p>
          <Contador contadorInicial={100} />
+         <ConditionalSection />
 
+         <div>
+          <h4>Trabajando con listas</h4>
+          {numbers.map((number,index) => {
+            return <p key = {index} >Soy el numero {number} y el index {index}</p>
+          })}
+         </div>
       </div>
+
     );
   }
 }
