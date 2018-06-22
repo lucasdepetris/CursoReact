@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import ConditionalSection from './sections/conditional'
-import cars from './data/cars.json'
+import Forms from './sections/forms'
+import Events from './sections/events'
+import Lists from './sections/lists'
 
 /*function Hello (props){
     return <h2>{props.title}</h2>
@@ -71,10 +73,12 @@ class ContadorNumero extends Component {
 }
 
 class App extends Component {
-  state = { name: 'Miguel' }
+  state = {
+    mouseX:0,
+    mouseY:0
+ }
 
   render() {
-    const numbers = [1,1,2,3,4]
 
     return (
       <div className="App">
@@ -94,25 +98,11 @@ class App extends Component {
          {this.state.name}
          <p>Propagando el state de nuestros componentes</p>
          <Contador contadorInicial={100} />
+
          <ConditionalSection />
-
-         <div>
-            <h4>Trabajando con listas</h4>
-            {numbers.map((number,index) => {
-              return <p key = {index} >Soy el numero {number} y el index {index}</p>
-            })}
-
-            <h4>Listas de objetos</h4>
-            <ul>
-              {cars.map(car => {
-                  return <li key = {car.id}>
-                            <p><strong>ID: </strong>{car.id}</p>
-                            <p><strong>Nombre: </strong>{car.name}</p>
-                            <p><strong>Nombre: </strong>{car.company}</p>
-                        </li>
-                      })}
-            </ul>
-         </div>
+         <Lists/>
+         <Events/>
+         <Forms/>
       </div>
 
     );
