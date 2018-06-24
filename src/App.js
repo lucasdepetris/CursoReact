@@ -5,6 +5,7 @@ import ConditionalSection from './sections/conditional'
 import Forms from './sections/forms'
 import Events from './sections/events'
 import Lists from './sections/lists'
+import Articles from './sections/articles'
 
 /*function Hello (props){
     return <h2>{props.title}</h2>
@@ -12,71 +13,7 @@ import Lists from './sections/lists'
 
 // const Hello = (props) => <h2>{props.title}</h2>
 
-class Hello extends Component{
-  render(){
-    return <h2>{this.props.title}</h2>
-  }
-}
-
-class Text extends Component {
-  render(){
-    const{
-      arrayOfNumbers,
-      isActivated,
-      title,
-      objectWithInfo,
-      multiply
-    } = this.props
-
-    const textoSegunBool = isActivated ? "On" : "Off"
-    const mappedNumbers = arrayOfNumbers.map(multiply)
-
-    return (
-            <div>
-                {title}
-                <p>{textoSegunBool}</p>
-                <p>{objectWithInfo.key}</p>
-                <p>{mappedNumbers.join(', ')}</p>
-            </div>
-          )
-  }
-}
-
-Text.defaultProps = {
-  title: 'titulo por defecto'
-}
-
-class Contador extends Component {
-  constructor (props) {
-    super(props)
-    console.log(this.props.contadorInicial)
-    this.state = { contador: this.props.contadorInicial }
-    setInterval(() => {
-      this.setState({ contador: this.state.contador + 1 })
-    }, 1000)
-  }
-
-  render () {
-    return <ContadorNumero numero={this.state.contador} />
-  }
-}
-
-Contador.defaultProps = {
-  contadorInicial: 0
-}
-
-class ContadorNumero extends Component {
-  render () {
-    console.log('ContadorNumero render()')
-    return <span>{this.props.numero}</span>
-  }
-}
-
 class App extends Component {
-  state = {
-    mouseX:0,
-    mouseY:0
- }
 
   render() {
 
@@ -84,25 +21,21 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
-          <Hello title = "Hello from props" />
         </header>
-        <Text
-          arrayOfNumbers = {[2,3,10]}
-          objectWithInfo = {{key:"First Value",Key2:"Other Value"}}
-          multiply = {(number) => number * 4}
-          isActivated
-          number = {2}
-          text = "Texto en string"
-          title = {<h1>Este es el titulo</h1>}
-         />
-         {this.state.name}
-         <p>Propagando el state de nuestros componentes</p>
-         <Contador contadorInicial={100} />
 
-         <ConditionalSection />
+         {/*<ConditionalSection />
          <Lists/>
          <Events/>
-         <Forms/>
+         <Forms/>*/}
+         <h4>Children props</h4>
+         <Articles
+          author='Miguel'
+          date={new Date().toLocaleDateString()}
+          title='Artículo sobre la prop children'
+          >
+          <p>El contenido que envolvemos dentro del componente Article será enviado al componente como this.props.children.</p>
+          <strong>Y mantiene las etiquetas y componentes que hayáis añadido dentro</strong>
+          </Articles>
       </div>
 
     );
