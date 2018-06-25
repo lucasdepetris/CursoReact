@@ -6,6 +6,7 @@ import Forms from './sections/forms'
 import Events from './sections/events'
 import Lists from './sections/lists'
 import Articles from './sections/articles'
+import FetchExample from './sections/fetch-example'
 
 /*function Hello (props){
     return <h2>{props.title}</h2>
@@ -27,7 +28,7 @@ class App extends Component {
          <Lists/>
          <Events/>
          <Forms/>*/}
-         <h4>Children props</h4>
+         {/*<h4>Children props</h4>
          <Articles
           author='Miguel'
           date={new Date().toLocaleDateString()}
@@ -35,7 +36,8 @@ class App extends Component {
           >
           <p>El contenido que envolvemos dentro del componente Article será enviado al componente como this.props.children.</p>
           <strong>Y mantiene las etiquetas y componentes que hayáis añadido dentro</strong>
-          </Articles>
+          </Articles>*/}
+          <FetchExample/>
       </div>
 
     );
