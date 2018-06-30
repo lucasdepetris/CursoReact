@@ -32,3 +32,25 @@ export default class Articles extends Component {
     )
   }
 }
+
+/*
+function Article (props) {
+  return (
+    <section>
+      <h2>{props.title}</h2>
+      <p><em>Escrito por {props.author}</em></p>
+      <date>{props.date}</date>
+      <article>
+        {props.children}
+      </article>
+    </section>
+  )
+}
+
+Article.propTypes = {
+  title: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  date: PropTypes.string.isRequired,
+  children: PropTypes.any
+}
+*/

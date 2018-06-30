@@ -10,6 +10,7 @@ import FetchExample from './sections/fetch-example'
 import EjemploCicloDeActualizacion from './sections/ejemploCicloDeActualizacion'
 import EjemploDeComponentWillUnmount from './sections/componentWillUnmount'
 import EjemploDeComponentDidCatch from './sections/componentDidCatch'
+import BitCoinPriceContainer from './sections/container-component'
 
 /*function Hello (props){
     return <h2>{props.title}</h2>
@@ -40,7 +41,8 @@ class App extends Component {
 
           {/*<EjemploCicloDeActualizacion/>*/}
           {/*<EjemploDeComponentWillUnmount/>*/}
-          <EjemploDeComponentDidCatch/>
+          {/*<EjemploDeComponentDidCatch/>*/}
+          <BitCoinPriceContainer/>
       </div>
 
     );
