@@ -12,11 +12,56 @@ const ANIMALS = Object.keys(ANIMAL_IMAGES)
 class AnimalImage extends Component{
   state = {src: ANIMAL_IMAGES[this.props.animal]}
 
-  UNSAFE_componentWillReceiveProps(nextProps){
-    console.log('componentWillReceiveProps')
+
+  componentWillReceiveProps(nextProps){
+    console.log('1. componentWillReceiveProps')
     console.log(nextProps)
     this.setState({src:ANIMAL_IMAGES[nextProps.animal]})
   }
+
+  shouldComponentUpdate(nextProps){
+    console.log('2. shouldComponentUpdate')
+    return this.props.animal !== nextProps.animal
+  }
+
+  componentWillUpdate(nextProps,nextState){
+    console.log('3. componentWillUpdate',nextProps,nextState)
+    const img = document.querySelector('img')
+    console.log('from img element',{alt:img.alt})
+    //Web api animation
+    img.animate([
+      {filter:'blur(0px)'},
+      {filter:'blur(9px)'}
+  ],{
+    duration:500,
+    easing:'ease'
+  })
+  }
+
+  componentDidUpdate(prevProps,prevState){
+    console.log('4. componentDidUpdate')
+    const img = document.querySelector('img')
+    console.log('from img element',{alt:img.alt})
+    //Web api animation
+    img.animate([
+      {filter:'blur(2px)'},
+      {filter:'blur(0px)'}
+  ],{
+    duration:500,
+    easing:'ease'
+  })
+  }
+  /*
+  static getDerivedStateFromProps(nextProps, prevState) {
+  // do things with nextProps.someProp and prevState.cachedSomeProp
+  console.log('getDerivedStateFromProps')
+  console.log(nextProps)
+  return {
+    src: ANIMAL_IMAGES[nextProps.animal],
+    };
+
+  }
+  */
 
   render(){
     console.log('-> render')

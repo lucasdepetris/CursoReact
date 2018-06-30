@@ -8,6 +8,8 @@ import Lists from './sections/lists'
 import Articles from './sections/articles'
 import FetchExample from './sections/fetch-example'
 import EjemploCicloDeActualizacion from './sections/ejemploCicloDeActualizacion'
+import EjemploDeComponentWillUnmount from './sections/componentWillUnmount'
+import EjemploDeComponentDidCatch from './sections/componentDidCatch'
 
 /*function Hello (props){
     return <h2>{props.title}</h2>
@@ -21,9 +23,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
 
          {/*<ConditionalSection />
          <Lists/>
@@ -38,8 +37,10 @@ class App extends Component {
           <p>El contenido que envolvemos dentro del componente Article será enviado al componente como this.props.children.</p>
           <strong>Y mantiene las etiquetas y componentes que hayáis añadido dentro</strong>
           </Articles>*/}
-          
-          <EjemploCicloDeActualizacion/>
+
+          {/*<EjemploCicloDeActualizacion/>*/}
+          {/*<EjemploDeComponentWillUnmount/>*/}
+          <EjemploDeComponentDidCatch/>
       </div>
 
     );
