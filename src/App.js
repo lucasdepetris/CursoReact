@@ -7,6 +7,7 @@ import Events from './sections/events'
 import Lists from './sections/lists'
 import Articles from './sections/articles'
 import FetchExample from './sections/fetch-example'
+import EjemploCicloDeActualizacion from './sections/ejemploCicloDeActualizacion'
 
 /*function Hello (props){
     return <h2>{props.title}</h2>
@@ -37,7 +38,8 @@ class App extends Component {
           <p>El contenido que envolvemos dentro del componente Article será enviado al componente como this.props.children.</p>
           <strong>Y mantiene las etiquetas y componentes que hayáis añadido dentro</strong>
           </Articles>*/}
-          <FetchExample/>
+          
+          <EjemploCicloDeActualizacion/>
       </div>
 
     );
