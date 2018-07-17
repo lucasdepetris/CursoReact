@@ -18,11 +18,46 @@ import BitCoinPriceContainer from './sections/container-component'
 
 // const Hello = (props) => <h2>{props.title}</h2>
 
+import * as firebase from 'firebase'
+
+const config = {
+    apiKey: "AIzaSyC4EynsIP-YkLMYY7SwBcvzxddS315Jn1Y",
+    authDomain: "react-firebase-20b38.firebaseapp.com",
+    databaseURL: "https://react-firebase-20b38.firebaseio.com",
+    projectId: "react-firebase-20b38",
+    storageBucket: "react-firebase-20b38.appspot.com",
+    messagingSenderId: "427190600126"
+}
+firebase.initializeApp(config)
+
 class App extends Component {
 
+  constructor () {
+    super()
+    this.state = {
+      listGrupos:[]
+    }
+  }
+  componentDidMount(){
+    const nameRef = firebase.database().ref().child('grupos')
+    
+    nameRef.on('value', snapshot => {
+      console.log(snapshot)
+      this.setState({
+        listGrupos: snapshot.val()
+      })
+    })
+  }
+ 
   render() {
-
-    return (
+    const listOfPositions = this.state.listGrupos.map(position => 
+      <div key={position.idGrupo}>
+          <h1>{position.idGrupo}</h1>
+          <h1>{position.nombre}</h1>
+      </div>
+  );
+  
+  return (
       <div className="App">
 
          {/*<ConditionalSection />
@@ -42,7 +77,9 @@ class App extends Component {
           {/*<EjemploCicloDeActualizacion/>*/}
           {/*<EjemploDeComponentWillUnmount/>*/}
           {/*<EjemploDeComponentDidCatch/>*/}
-          <BitCoinPriceContainer/>
+          {/*<BitCoinPriceContainer/>*/}
+          
+          <div>{listOfPositions}</div>
       </div>
 
     );
