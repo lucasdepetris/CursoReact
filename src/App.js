@@ -32,56 +32,36 @@ firebase.initializeApp(config)
 
 class App extends Component {
 
-  constructor () {
-    super()
-    this.state = {
-      listGrupos:[]
-    }
+  constructor(props) {
+    super(props);
+    this.state = { messages: [] }; // <- set up react state
   }
-  componentDidMount(){
-    const nameRef = firebase.database().ref().child('grupos')
-    
-    nameRef.on('value', snapshot => {
-      console.log(snapshot)
-      this.setState({
-        listGrupos: snapshot.val()
-      })
+  componentWillMount(){
+    /* Create reference to messages in Firebase Database */
+    let messagesRef = firebase.database().ref('messages').orderByKey().limitToLast(100);
+    messagesRef.on('child_added', snapshot => {
+      /* Update React state when message is added at Firebase Database */
+      let message = { text: snapshot.val(), id: snapshot.key };
+      this.setState({ messages: [message].concat(this.state.messages) });
     })
   }
- 
+  addMessage(e){
+    e.preventDefault(); // <- prevent form submit from reloading the page
+    /* Send the message to Firebase */
+    firebase.database().ref('messages').push( this.inputEl.value );
+    this.inputEl.value = ''; // <- clear the input
+  }
   render() {
-    const listOfPositions = this.state.listGrupos.map(position => 
-      <div key={position.idGrupo}>
-          <h1>{position.idGrupo}</h1>
-          <h1>{position.nombre}</h1>
-      </div>
-  );
-  
-  return (
-      <div className="App">
-
-         {/*<ConditionalSection />
-         <Lists/>
-         <Events/>
-         <Forms/>*/}
-         {/*<h4>Children props</h4>
-         <Articles
-          author='Miguel'
-          date={new Date().toLocaleDateString()}
-          title='Artículo sobre la prop children'
-          >
-          <p>El contenido que envolvemos dentro del componente Article será enviado al componente como this.props.children.</p>
-          <strong>Y mantiene las etiquetas y componentes que hayáis añadido dentro</strong>
-          </Articles>*/}
-
-          {/*<EjemploCicloDeActualizacion/>*/}
-          {/*<EjemploDeComponentWillUnmount/>*/}
-          {/*<EjemploDeComponentDidCatch/>*/}
-          {/*<BitCoinPriceContainer/>*/}
-          
-          <div>{listOfPositions}</div>
-      </div>
-
+    return (
+      <form onSubmit={this.addMessage.bind(this)}>
+        <input type="text" ref={ el => this.inputEl = el }/>
+        <input type="submit"/>
+        <ul>
+          { /* Render the list of messages */
+            this.state.messages.map( message => <li key={message.id}>{message.text}</li> )
+          }
+        </ul>
+      </form>
     );
   }
 }
