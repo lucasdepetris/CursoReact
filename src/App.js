@@ -39,6 +39,18 @@ class App extends Component {
   componentWillMount(){
     /* Create reference to messages in Firebase Database */
     let messagesRef = firebase.database().ref('messages').orderByKey().limitToLast(100);
+    var empsRef = firebase.database().ref("employees");
+
+    empsRef.child('11111').set({
+      lastname: "Lee",
+      firstname: "Kang"
+    });
+
+    empsRef.child('22222').set({
+      lastname: "Nut",
+      firstname: "Dough"
+    });
+
     messagesRef.on('child_added', snapshot => {
       /* Update React state when message is added at Firebase Database */
       console.log(snapshot)
