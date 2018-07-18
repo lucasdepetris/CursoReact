@@ -41,14 +41,20 @@ class App extends Component {
     let messagesRef = firebase.database().ref('messages').orderByKey().limitToLast(100);
     messagesRef.on('child_added', snapshot => {
       /* Update React state when message is added at Firebase Database */
+      console.log(snapshot)
       let message = { text: snapshot.val(), id: snapshot.key };
+      console.log(message)
+      console.log(snapshot.val())
+      console.log(snapshot.key)
       this.setState({ messages: [message].concat(this.state.messages) });
     })
   }
   addMessage(e){
     e.preventDefault(); // <- prevent form submit from reloading the page
     /* Send the message to Firebase */
+    const list = {name:"pep",apellido:"perez",perro:{nombre:"sol"}}
     firebase.database().ref('messages').push( this.inputEl.value );
+    firebase.database().ref('users').push(list)
     this.inputEl.value = ''; // <- clear the input
   }
   render() {
